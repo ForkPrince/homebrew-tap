@@ -4,7 +4,7 @@ cask "figura" do
 
   url "https://github.com/nuance-dev/figura/releases/download/v#{version}/Figura.app.zip"
   name "Figura"
-  desc "A free macOS native app to remove image backgrounds locally"
+  desc "Free macOS native app to remove image backgrounds locally"
   homepage "https://github.com/nuance-dev/figura"
 
   app "Figura.app"

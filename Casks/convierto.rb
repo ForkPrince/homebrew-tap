@@ -4,7 +4,7 @@ cask "convierto" do
 
   url "https://github.com/nuance-dev/convierto/releases/download/v#{version}/Convierto.app.zip"
   name "Convierto"
-  desc "A native macOS file converter app"
+  desc "Native macOS file converter app"
   homepage "https://github.com/nuance-dev/convierto"
 
   app "Convierto.app"

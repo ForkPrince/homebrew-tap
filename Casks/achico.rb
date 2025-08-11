@@ -4,7 +4,7 @@ cask "achico" do
 
   url "https://github.com/nuance-dev/achico/releases/download/v#{version}/Achico.app.zip"
   name "Achico"
-  desc "A minimal free macOS local file compressor app"
+  desc "Minimal free macOS local file compressor app"
   homepage "https://github.com/nuance-dev/achico"
 
   app "Achico.app"

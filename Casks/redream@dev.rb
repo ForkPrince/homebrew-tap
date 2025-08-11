@@ -9,7 +9,7 @@ cask "redream@dev" do
 
   livecheck do
     url "https://redream.io/download"
-    regex(/redream\.universal-mac-v(\d+(?:\.\d+)*)\.t/i)
+    regex(/redream\.universal-mac-v(\d+(?:\.\d+)*(?:-\d+-g[0-9a-f]+)?)\.t/i)
   end
 
   conflicts_with cask: "redream"

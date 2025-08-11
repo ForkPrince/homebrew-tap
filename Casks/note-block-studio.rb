@@ -4,7 +4,7 @@ cask "note-block-studio" do
 
   url "https://github.com/ForkPrince/tap/raw/c60a096fb2552904ec5eada157bcc8427eba13d9/Apps/Note%20Block%20Studio.dmg"
   name "Note Block Studio"
-  desc "An open-source Minecraft music editor"
+  desc "Open source Minecraft music editor"
   homepage "https://opennbs.org/"
 
   app "Minecraft Note Block Studio.app"

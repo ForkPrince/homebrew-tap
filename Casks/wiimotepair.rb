@@ -4,7 +4,7 @@ cask "wiimotepair" do
 
   url "https://dl.dolphin-emu.org/misc/WiimotePair-#{version}.dmg"
   name "WiimotePair"
-  desc "A utility app that pairs Wii Remotes to Macs."
+  desc "Utility app that pairs Wii Remotes to Macs"
   homepage "https://github.com/dolphin-emu/WiimotePair"
 
   app "WiimotePair.app"

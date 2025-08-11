@@ -4,7 +4,7 @@ cask "relunatic-player" do
 
   url "https://github.com/Prince527GitHub/Re-Lunatic-Player/releases/download/v#{version}/Re.Lunatic.Player.dmg"
   name "Re:Lunatic Player"
-  desc "A program for playback of Gensokyo Radio with easy access to song data, continuation of the Lunatic Player project."
+  desc "Gensokyo Radio app continuation of Lunatic Player"
   homepage "https://github.com/Prince527GitHub/Re-Lunatic-Player"
 
   app "Re-Lunatic Player.app"
