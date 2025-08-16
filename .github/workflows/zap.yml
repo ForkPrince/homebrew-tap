@@ -54,25 +54,59 @@ jobs:
             raw_output=$(brew createzap "$cask_name" 2>/dev/null || echo "")
 
             if echo "$raw_output" | grep -q "No .* settings found"; then
-              content="  # No zap stanza required"
-            else
+              awk '
+              /^end$/ && !done {
+                print ""
+                print "  # No zap stanza required"
+                print $0
+                done=1
+                next
+              }
+              { print }
+              ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
+            elif [ -n "$raw_output" ]; then
               zap_content=$(echo "$raw_output" | grep -E "^  (zap|uninstall)" | head -20)
-              content="${zap_content:-  # No zap stanza required}"
+              if [ -n "$zap_content" ]; then
+                echo "$zap_content" > /tmp/zap_block.tmp
+                awk '
+                /^end$/ && !done {
+                  print ""
+                  while ((getline line < "/tmp/zap_block.tmp") > 0) {
+                    print line
+                  }
+                  close("/tmp/zap_block.tmp")
+                  print $0
+                  done=1
+                  next
+                }
+                { print }
+                ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
+                rm -f /tmp/zap_block.tmp
+              else
+                awk '
+                /^end$/ && !done {
+                  print ""
+                  print "  # No zap stanza required"
+                  print $0
+                  done=1
+                  next
+                }
+                { print }
+                ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
+              fi
+            else
+              awk '
+              /^end$/ && !done {
+                print ""
+                print "  # No zap stanza required"
+                print $0
+                done=1
+                next
+              }
+              { print }
+              ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
             fi
-
-            awk -v content="$content" '
-            /^end$/ && !done {
-              print ""
-              print content
-              if (content ~ /zap|uninstall/) print ""
-              print $0
-              done=1
-              next
-            }
-            { print }
-            ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
           done
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
