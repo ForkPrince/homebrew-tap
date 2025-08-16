@@ -53,25 +53,34 @@ jobs:
             echo "⚠️ $cask_name missing zap stanza, generating..."
             zap_block=$(brew createzap "$cask_name" || true)
 
-            awk -v block="$zap_block" '
-            /^end$/ && !done {
-              if (block != "") {
-                # add proper indentation to zap block
-                split(block, lines, "\n")
-                for (i in lines) {
-                  if (lines[i] != "") {
-                    print "  " lines[i]
+            if [ -n "$zap_block" ]; then
+              echo "$zap_block" > /tmp/zap_block.tmp
+              awk '
+              /^end$/ && !done {
+                while ((getline line < "/tmp/zap_block.tmp") > 0) {
+                  if (line != "") {
+                    print "  " line
                   }
                 }
-              } else {
-                print "  # No zap stanza required"
+                close("/tmp/zap_block.tmp")
+                print $0
+                done=1
+                next
               }
-              print $0
-              done=1
-              next
-            }
-            { print }
-            ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
+              { print }
+              ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
+              rm -f /tmp/zap_block.tmp
+            else
+              awk '
+              /^end$/ && !done {
+                print "  # No zap stanza required"
+                print $0
+                done=1
+                next
+              }
+              { print }
+              ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
+            fi
           done
 
       - name: Create Pull Request
