@@ -24,3 +24,4 @@ A collection of Casks and Formulas I needed
 ## Formula
 
 - `equicord-installer`: The CLI installer of [Equicord](https://github.com/Equicord/Equicord) (A client mod for Discord based on Vencord)
+- `wg-nord`: WireGuard configuration generator for NordVPN
