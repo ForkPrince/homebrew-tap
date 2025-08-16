@@ -33,7 +33,7 @@ jobs:
               continue
             fi
 
-            brew install "$cask_name"
+            brew install --cask "$cask_name"
 
             echo "⚠️ $cask_name missing zap stanza, generating..."
             zap_block=$(brew createzap "$cask_name" || true)
