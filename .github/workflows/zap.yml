@@ -27,7 +27,7 @@ jobs:
           for cask in Casks/*.rb; do
             cask_name=$(basename "$cask" .rb)
 
-            if grep -q "zap do" "$cask"; then
+            if grep -q "zap" "$cask"; then
               echo "✅ $cask_name already has a zap stanza"
               continue
             fi
