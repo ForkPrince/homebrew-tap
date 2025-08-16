@@ -54,19 +54,23 @@ jobs:
             zap_block=$(brew createzap "$cask_name" || true)
 
             awk -v block="$zap_block" '
-              /^end$/ && !done {
-                if (block != "") {
-                  # add proper indentation
-                  split(block, lines, "\n")
-                  for (i in lines) {
+            /^end$/ && !done {
+              if (block != "") {
+                # add proper indentation to zap block
+                split(block, lines, "\n")
+                for (i in lines) {
+                  if (lines[i] != "") {
                     print "  " lines[i]
                   }
-                } else {
-                  print "  # No zap stanza required"
                 }
-                done=1
+              } else {
+                print "  # No zap stanza required"
               }
-              { print }
+              print $0
+              done=1
+              next
+            }
+            { print }
             ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
           done
 
