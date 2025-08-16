@@ -33,9 +33,7 @@ jobs:
               continue
             fi
 
-            if ! brew ls --cask "$cask_name" &>/dev/null; then
-              brew install "$cask_name"
-            fi
+            brew install "$cask_name"
 
             echo "⚠️ $cask_name missing zap stanza, generating..."
             zap_block=$(brew createzap "$cask_name" || true)
