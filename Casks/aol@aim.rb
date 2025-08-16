@@ -9,3 +9,7 @@ cask "aol@aim" do
 
   app "AOL Instant Messenger.app"
 end
+
+No aol@aim settings found.
+Instead of a zap stanza, include the following comment:
+# No zap stanza required

@@ -9,3 +9,7 @@ cask "note-block-studio" do
 
   app "Minecraft Note Block Studio.app"
 end
+
+No note-block-studio settings found.
+Instead of a zap stanza, include the following comment:
+# No zap stanza required

@@ -10,3 +10,7 @@ cask "tablift" do
 
   app "TabLift.app"
 end
+
+No tablift settings found.
+Instead of a zap stanza, include the following comment:
+# No zap stanza required

@@ -9,3 +9,7 @@ cask "librescore" do
 
   app "LibreScore.app"
 end
+
+No librescore settings found.
+Instead of a zap stanza, include the following comment:
+# No zap stanza required

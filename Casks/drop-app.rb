@@ -13,3 +13,7 @@ cask "drop-app" do
 
   app "Drop Desktop Client.app"
 end
+
+No drop-app settings found.
+Instead of a zap stanza, include the following comment:
+# No zap stanza required

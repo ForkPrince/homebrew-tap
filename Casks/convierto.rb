@@ -9,3 +9,7 @@ cask "convierto" do
 
   app "Convierto.app"
 end
+
+No convierto settings found.
+Instead of a zap stanza, include the following comment:
+# No zap stanza required

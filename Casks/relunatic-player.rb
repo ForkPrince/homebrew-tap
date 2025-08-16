@@ -9,3 +9,7 @@ cask "relunatic-player" do
 
   app "Re-Lunatic Player.app"
 end
+
+No relunatic-player settings found.
+Instead of a zap stanza, include the following comment:
+# No zap stanza required

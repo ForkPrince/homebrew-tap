@@ -9,3 +9,7 @@ cask "achico" do
 
   app "Achico.app"
 end
+
+No achico settings found.
+Instead of a zap stanza, include the following comment:
+# No zap stanza required

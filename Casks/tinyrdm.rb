@@ -13,3 +13,7 @@ cask "tinyrdm" do
 
   app "Tiny RDM.app"
 end
+
+No tinyrdm settings found.
+Instead of a zap stanza, include the following comment:
+# No zap stanza required
