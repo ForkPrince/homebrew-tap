@@ -8,4 +8,6 @@ cask "achico" do
   homepage "https://github.com/nuance-dev/achico"
 
   app "Achico.app"
+
+  # No zap stanza required
 end

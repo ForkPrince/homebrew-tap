@@ -8,4 +8,6 @@ cask "librescore" do
   homepage "https://github.com/LibreScore/app-librescore"
 
   app "LibreScore.app"
+
+  # No zap stanza required
 end

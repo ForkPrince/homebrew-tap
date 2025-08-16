@@ -8,4 +8,6 @@ cask "note-block-studio" do
   homepage "https://opennbs.org/"
 
   app "Minecraft Note Block Studio.app"
+
+  # No zap stanza required
 end

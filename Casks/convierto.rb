@@ -8,4 +8,6 @@ cask "convierto" do
   homepage "https://github.com/nuance-dev/convierto"
 
   app "Convierto.app"
+
+  # No zap stanza required
 end

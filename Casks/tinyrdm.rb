@@ -12,4 +12,6 @@ cask "tinyrdm" do
   homepage "https://redis.tinycraft.cc"
 
   app "Tiny RDM.app"
+
+  # No zap stanza required
 end
