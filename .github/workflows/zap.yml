@@ -51,36 +51,26 @@ jobs:
             brew install --cask "$cask_name"
 
             echo "⚠️ $cask_name missing zap stanza, generating..."
-            zap_block=$(brew createzap "$cask_name" || true)
+            raw_output=$(brew createzap "$cask_name" 2>/dev/null || echo "")
 
-            if [ -n "$zap_block" ]; then
-              echo "$zap_block" > /tmp/zap_block.tmp
-              awk '
-              /^end$/ && !done {
-                while ((getline line < "/tmp/zap_block.tmp") > 0) {
-                  if (line != "") {
-                    print "  " line
-                  }
-                }
-                close("/tmp/zap_block.tmp")
-                print $0
-                done=1
-                next
-              }
-              { print }
-              ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
-              rm -f /tmp/zap_block.tmp
+            if echo "$raw_output" | grep -q "No .* settings found"; then
+              content="  # No zap stanza required"
             else
-              awk '
-              /^end$/ && !done {
-                print "  # No zap stanza required"
-                print $0
-                done=1
-                next
-              }
-              { print }
-              ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
+              zap_content=$(echo "$raw_output" | grep -E "^  (zap|uninstall)" | head -20)
+              content="${zap_content:-  # No zap stanza required}"
             fi
+
+            awk -v content="$content" '
+            /^end$/ && !done {
+              print ""
+              print content
+              if (content ~ /zap|uninstall/) print ""
+              print $0
+              done=1
+              next
+            }
+            { print }
+            ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
           done
 
       - name: Create Pull Request
