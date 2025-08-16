@@ -8,4 +8,7 @@ cask "librescore" do
   homepage "https://github.com/LibreScore/app-librescore"
 
   app "LibreScore.app"
+  No librescore settings found.
+  Instead of a zap stanza, include the following comment:
+  # No zap stanza required
 end

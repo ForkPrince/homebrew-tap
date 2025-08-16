@@ -8,4 +8,7 @@ cask "convierto" do
   homepage "https://github.com/nuance-dev/convierto"
 
   app "Convierto.app"
+  No convierto settings found.
+  Instead of a zap stanza, include the following comment:
+  # No zap stanza required
 end

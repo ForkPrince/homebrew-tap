@@ -9,4 +9,7 @@ cask "tablift" do
   homepage "https://tablift.mihai.sh/"
 
   app "TabLift.app"
+  No tablift settings found.
+  Instead of a zap stanza, include the following comment:
+  # No zap stanza required
 end

@@ -8,4 +8,7 @@ cask "achico" do
   homepage "https://github.com/nuance-dev/achico"
 
   app "Achico.app"
+  No achico settings found.
+  Instead of a zap stanza, include the following comment:
+  # No zap stanza required
 end

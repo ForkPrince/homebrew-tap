@@ -8,4 +8,7 @@ cask "relunatic-player" do
   homepage "https://github.com/Prince527GitHub/Re-Lunatic-Player"
 
   app "Re-Lunatic Player.app"
+  No relunatic-player settings found.
+  Instead of a zap stanza, include the following comment:
+  # No zap stanza required
 end

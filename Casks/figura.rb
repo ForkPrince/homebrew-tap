@@ -8,4 +8,12 @@ cask "figura" do
   homepage "https://github.com/nuance-dev/figura"
 
   app "Figura.app"
+  zap trash: [
+    "/Library/Preferences/SystemConfiguration",
+    "~/Library/Application Scripts/com.apple.calendar.CalendarFocusConfigurationExtension",
+    "~/Library/Application Scripts/group.com.apple.PegasusConfiguration",
+    "~/Library/Containers/com.apple.calendar.CalendarFocusConfigurationExtension",
+    "~/Library/Group Containers/group.com.apple.PegasusConfiguration",
+    "~/Library/Preferences/com.apple.commerce.configurator.plist",
+  ]
 end

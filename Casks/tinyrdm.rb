@@ -12,4 +12,7 @@ cask "tinyrdm" do
   homepage "https://redis.tinycraft.cc"
 
   app "Tiny RDM.app"
+  No tinyrdm settings found.
+  Instead of a zap stanza, include the following comment:
+  # No zap stanza required
 end
