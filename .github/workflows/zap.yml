@@ -5,8 +5,6 @@ on:
   push:
     paths:
       - "Casks/**/*.rb"
-  schedule:
-    - cron: "0 3 * * *"
 
 jobs:
   check:
@@ -21,37 +19,46 @@ jobs:
 
       - name: Tap repos
         run: |
-          brew tap nrlquaker/createzap
           brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY)
+          brew tap nrlquaker/createzap
 
       - name: Check casks and add zap
         run: |
-          mkdir -p zap-fixes
           for cask in Casks/*.rb; do
-            if ! grep -q "zap do" "$cask"; then
-              cask_name=$(basename "$cask" .rb)
-              echo "⚠️ $cask_name missing zap stanza, generating..."
+            cask_name=$(basename "$cask" .rb)
 
-              zap_block=$(brew createzap "$cask_name" || true)
+            # check if zap is already present
+            if grep -q "zap do" "$cask"; then
+              echo "✅ $cask_name already has a zap stanza"
+              continue
+            fi
 
-              if [ -n "$zap_block" ]; then
-                echo "" >> "$cask"
-                echo "$zap_block" >> "$cask"
-                cp "$cask" "zap-fixes/$(basename "$cask")"
-              else
-                echo "⚠️ Could not generate zap for $cask_name"
-              fi
+            if ! brew ls --cask "$cask_name" &>/dev/null; then
+              brew install "$cask_name"
+            fi
+
+            echo "⚠️ $cask_name missing zap stanza, generating..."
+            zap_block=$(brew createzap "$cask_name" || true)
+
+            if [ -n "$zap_block" ]; then
+              echo "" >> "$cask"
+              echo "$zap_block" >> "$cask"
+              cp "$cask" "zap-fixes/$(basename "$cask")"
+            else
+              echo "⚠️ Could not generate zap for $cask_name"
             fi
           done
 
-      - name: Commit changes if any
+      - name: Commit and push
         run: |
-          if [ -n "$(ls -A zap-fixes 2>/dev/null)" ]; then
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git add Casks/*.rb
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+
+          if ! git diff --cached --quiet; then
             git commit -m "Add zap stanzas"
-            git push
+            git push --set-upstream origin main
           else
-            echo "✅ All casks already have zap stanzas."
+            echo "No changes to commit."
           fi
