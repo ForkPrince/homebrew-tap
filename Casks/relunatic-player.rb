@@ -8,4 +8,7 @@ cask "relunatic-player" do
   homepage "https://github.com/Prince527GitHub/Re-Lunatic-Player"
 
   app "Re-Lunatic Player.app"
+
+  # No zap stanza required
+
 end

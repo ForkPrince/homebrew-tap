@@ -12,4 +12,7 @@ cask "drop-app" do
   homepage "https://droposs.org/"
 
   app "Drop Desktop Client.app"
+
+  # No zap stanza required
+
 end

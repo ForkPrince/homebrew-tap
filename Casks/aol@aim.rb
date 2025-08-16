@@ -8,4 +8,7 @@ cask "aol@aim" do
   homepage "https://github.com/mk6i/aim-for-macos"
 
   app "AOL Instant Messenger.app"
+
+  # No zap stanza required
+
 end

@@ -8,4 +8,7 @@ cask "figura" do
   homepage "https://github.com/nuance-dev/figura"
 
   app "Figura.app"
+
+  # No zap stanza required
+
 end

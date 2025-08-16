@@ -9,4 +9,7 @@ cask "tablift" do
   homepage "https://tablift.mihai.sh/"
 
   app "TabLift.app"
+
+  # No zap stanza required
+
 end
