@@ -5,20 +5,21 @@ A collection of Casks and Formulas I needed
 ## Casks
 
 - `redream@dev`: The latest development build of [Redream](https://redream.io/)
-- `relunatic-player`: A dedicated app to listen to [Gensokyo Radio](https://gensokyoradio.net/)
+- `relunatic-player`: Dedicated app to listen to [Gensokyo Radio](https://gensokyoradio.net/)
 - `peazip`: Free zip/unzip software and rar file extractor
-- `librescore`: A downloader for musescore.com
+- `librescore`: Downloader for musescore.com
 - `note-block-studio`: An app to develop note block songs
 - `aol@aim`: AOL Instant Messenger for modern versions of MacOS
-- `convierto`: A native MacOS file converter app
-- `achico`: A minimal free MacOS local file compressor app
-- `figura`: A free MacOS native app to remove image backgrounds locally
-- `wiimotepair`: A utility app that pairs Wii Remotes to Macs
-- `vmware-fusion@mirror`: A mirror download of VMware Fusion
-- `beeper@nightly`: A nightly build of [Beeper](https://www.beeper.com/)
-- `xmcl`: An Open Source Minecraft Launcher with Modern UX
+- `convierto`: Native MacOS file converter app
+- `achico`: Minimal free MacOS local file compressor app
+- `figura`: Free MacOS native app to remove image backgrounds locally
+- `wiimotepair`: Utility app that pairs Wii Remotes to Macs
+- `vmware-fusion@mirror`: Mirror download of VMware Fusion
+- `beeper@nightly`: Nightly build of [Beeper](https://www.beeper.com/)
+- `xmcl`: Open Source Minecraft Launcher with Modern UX
 - `tablift`: Utility that auto-restore minimized app windows with ⌘+Tab
 - `tinyrdm`: Modern and colorful Redis GUI client
+- `drop-app`: Desktop companion app for [Drop](https://droposs.org/)
 
 ## Formula
 
