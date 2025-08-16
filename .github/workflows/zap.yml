@@ -1,0 +1,57 @@
+name: Zap Stanzas
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "Casks/**/*.rb"
+  schedule:
+    - cron: "0 3 * * *"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Tap repos
+        run: |
+          brew tap nrlquaker/createzap
+          brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY)
+
+      - name: Check casks and add zap
+        run: |
+          mkdir -p zap-fixes
+          for cask in Casks/*.rb; do
+            if ! grep -q "zap do" "$cask"; then
+              cask_name=$(basename "$cask" .rb)
+              echo "⚠️ $cask_name missing zap stanza, generating..."
+
+              zap_block=$(brew createzap "$cask_name" || true)
+
+              if [ -n "$zap_block" ]; then
+                echo "" >> "$cask"
+                echo "$zap_block" >> "$cask"
+                cp "$cask" "zap-fixes/$(basename "$cask")"
+              else
+                echo "⚠️ Could not generate zap for $cask_name"
+              fi
+            fi
+          done
+
+      - name: Commit changes if any
+        run: |
+          if [ -n "$(ls -A zap-fixes 2>/dev/null)" ]; then
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git add Casks/*.rb
+            git commit -m "Add zap stanzas"
+            git push
+          else
+            echo "✅ All casks already have zap stanzas."
+          fi
