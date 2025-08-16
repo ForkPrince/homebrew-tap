@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - "Casks/**/*.rb"
+    branches-ignore:
+      - zap-updates
 
 jobs:
   check:
@@ -51,12 +53,21 @@ jobs:
             echo "⚠️ $cask_name missing zap stanza, generating..."
             zap_block=$(brew createzap "$cask_name" || true)
 
-            if [ -n "$zap_block" ]; then
-              echo "" >> "$cask"
-              echo "$zap_block" >> "$cask"
-            else
-              echo "⚠️ Could not generate zap for $cask_name"
-            fi
+            awk -v block="$zap_block" '
+              /^end$/ && !done {
+                if (block != "") {
+                  # add proper indentation
+                  split(block, lines, "\n")
+                  for (i in lines) {
+                    print "  " lines[i]
+                  }
+                } else {
+                  print "  # No zap stanza required"
+                }
+                done=1
+              }
+              { print }
+            ' "$cask" > "$cask.tmp" && mv "$cask.tmp" "$cask"
           done
 
       - name: Create Pull Request
