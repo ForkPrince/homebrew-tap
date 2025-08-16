@@ -6,13 +6,12 @@ on:
     paths:
       - "Casks/**/*.rb"
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   check:
     runs-on: macos-latest
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repo
@@ -63,6 +62,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.TOKEN }}
           branch: zap-updates
           title: "Add zap stanzas"
           body: |

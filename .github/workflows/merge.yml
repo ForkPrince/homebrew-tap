@@ -32,6 +32,8 @@ jobs:
               pull_number: number
             });
 
+            if (pr.head.ref === "zap-updates") return console.log(`Skipping auto-merge for zap-updates PR #${number}`);
+
             if (pr.state === "open" && !pr.draft) {
               await github.rest.pulls.merge({
                 owner: context.repo.owner,
