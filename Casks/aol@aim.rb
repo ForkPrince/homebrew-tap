@@ -1,6 +1,6 @@
 cask "aol@aim" do
   version "0.0.4"
-  sha256 "795fa8e59917455d11e416c533694485677043bb6e2b4e0c4df3d4e50b13973b"
+  sha256 "e98fdec42388275391af9bbd0d2ca4b08d6d67f8c7fedfccd0d5c93a8659157c"
 
   url "https://github.com/mk6i/aim-for-macos/releases/download/v#{version}/AIM_5.1.3036_for_MacOS.zip"
   name "AIM"
