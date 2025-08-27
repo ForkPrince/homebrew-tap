@@ -11,5 +11,10 @@ cask "drop-app" do
   desc "Desktop companion app for Drop"
   homepage "https://droposs.org/"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   app "Drop Desktop Client.app"
 end
