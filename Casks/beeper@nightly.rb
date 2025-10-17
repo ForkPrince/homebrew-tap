@@ -20,7 +20,7 @@ cask "beeper@nightly" do
 
   auto_updates true
   conflicts_with cask: ["beeper"]
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :monterey"
 
   app "Beeper Nightly.app"
 
