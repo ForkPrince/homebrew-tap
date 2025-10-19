@@ -11,6 +11,8 @@ cask "peazip" do
   desc "Free Zip / Unzip software and Rar file extractor"
   homepage "https://peazip.github.io/"
 
+  depends_on macos: ">= :big_sur"
+
   app "peazip.app"
 
   zap trash: "~/Library/Saved Application State/com.company.peazip.savedState"
