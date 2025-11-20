@@ -1,9 +1,9 @@
 cask "drop-app" do
   arch arm: "aarch64", intel: "x64"
 
-  version "0.3.3"
-  sha256 arm:   "36c8d82be3b9b8b28ac7cac61d55f1fa64877ea909656a0c56cb9eaec71d72c7",
-         intel: "11d678e36dfbb2e4a2d0566a30f4b32e10288b70c53e3680e42bd3e1e1267264"
+  version "0.3.4"
+  sha256 arm:   "33bf04b5825733cca348ef5560d4b033837847ee08d7801997cbf960a96fdffe",
+         intel: "604d8922229b416f18876a020bef8aa7eb0686bdcfe6ff691fbc5daccc0e7e67"
 
   url "https://github.com/Drop-OSS/drop-app/releases/download/v#{version}/Drop.Desktop.Client_#{version}_#{arch}.dmg",
       verified: "github.com/Drop-OSS/drop-app/"
