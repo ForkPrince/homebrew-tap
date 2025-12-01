@@ -9,8 +9,8 @@ class WgNord < Formula
   end
 
   on_arm do
-    url "https://github.com/n-thumann/wg-nord/releases/download/v1.0.0/wg-nord-1.0.0-aarch64-apple-darwin.tar.gz"
-    sha256 "de9d47a518f5df5274582cb9954c5d29d63a009226aaa1ef216a41a08f7f1495"
+    url "https://github.com/n-thumann/wg-nord/releases/download/v1.0.1/wg-nord-1.0.1-aarch64-apple-darwin.tar.gz"
+    sha256 "15692aed22681cafbeb3d8a414be265e530824458cfc1d3c877a33422858a68d"
   end
 
   def install
