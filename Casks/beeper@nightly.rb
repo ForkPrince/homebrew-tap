@@ -2,9 +2,9 @@ cask "beeper@nightly" do
   arch arm: "-arm64"
   livecheck_arch = on_arch_conditional arm: "arm64", intel: "x64"
 
-  version "4.2.350"
-  sha256 arm:   "0c4e06627b3ffeb53266d28e65bb3388900844eea9cf3ab2cb946bb129c59b70",
-         intel: "6fba40455faedcef21c31ff82f760c087bbfaf9385f451329d6656ad81c6da42"
+  version "4.2.353"
+  sha256 arm:   "942b4b5800e9832645552a38a5d5ea13a5957f9b6115fe9b95d7a5e65e24767d",
+         intel: "9ab8e83567f00ab7a0f78d8ab00f5aea883a4396f2d5c0a3a59228ae39c21cd9"
 
   url "https://beeper-desktop.download.beeper.com/builds/Beeper%20Nightly-#{version}#{arch}-mac.zip"
   name "Beeper"
