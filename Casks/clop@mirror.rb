@@ -1,6 +1,6 @@
 cask "clop@mirror" do
   version "2.10.6"
-  sha256 "2b8d49a2196bbd52b5e7d0c102f17ed3b0465b54b2891cd8cff97bb44a114169"
+  sha256 "51d39b737a61121b15a439a73d193466d6bb65d4e15823b9a4025b42ec01a9f7"
 
   url "https://github.com/SoBloxsy/Clop/releases/download/#{version}/Clop.app.zip"
   name "Clop"
