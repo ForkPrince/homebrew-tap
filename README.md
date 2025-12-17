@@ -20,6 +20,7 @@ A collection of Casks and Formulas I needed
 - `tablift`: Utility that auto-restore minimized app windows with ⌘+Tab
 - `tinyrdm`: Modern and colorful Redis GUI client
 - `drop-app`: Desktop companion app for [Drop](https://droposs.org/)
+- `clop@mirror`: Image, video and clipboard optimiser
 
 ## Formula
 
