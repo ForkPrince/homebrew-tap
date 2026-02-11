@@ -1,0 +1,61 @@
+name: Create API
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: macos-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Configure Git user
+        uses: Homebrew/actions/git-user-config@master
+        with:
+          username: BrewTestBot
+
+      - name: Tap Repo
+        run: brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY)
+
+      - name: Get packages
+        run: |
+          FORMULAE=$(find Formula -name '*.rb' -exec basename {} .rb \; | sort | paste -sd' ' -)
+          CASKS=$(find Casks -name '*.rb' -exec basename {} .rb \; | sort | paste -sd' ' -)
+
+          echo "FORMULAE=$FORMULAE" >> $GITHUB_ENV
+          echo "CASKS=$CASKS" >> $GITHUB_ENV
+
+      - name: Generate API
+        run: |
+          mkdir -p web/formulae web/casks
+          for formula in $FORMULAE; do
+            brew info --json=v2 $formula > web/formulae/$formula.json
+          done
+          for cask in $CASKS; do
+            brew info --json=v2 $cask > web/casks/$cask.json
+          done
+
+      - name: Create Artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          name: website
+          path: ./web/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: website
