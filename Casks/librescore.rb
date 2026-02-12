@@ -1,6 +1,6 @@
 cask "librescore" do
-  version "6.0.21"
-  sha256 "8e6bc6234ff10fcc0d711970122e00b5bed369e279c6adcc0312c80d69939658"
+  version "6.0.22"
+  sha256 "155a284c108f684f1c851f183a3890162f0bf46eda9c7202aee7d80d08c8874f"
 
   url "https://github.com/LibreScore/app-librescore/releases/download/v#{version}/LibreScore.dmg"
   name "LibreScore"
