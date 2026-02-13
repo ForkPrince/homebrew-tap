@@ -11,5 +11,7 @@ cask "tinyrdm" do
   desc "Modern and colorful Redis GUI client"
   homepage "https://redis.tinycraft.cc/"
 
+  depends_on macos: ">= :big_sur"
+
   app "Tiny RDM.app"
 end
