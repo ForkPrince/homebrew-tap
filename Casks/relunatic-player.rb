@@ -7,7 +7,10 @@ cask "relunatic-player" do
   desc "Gensokyo Radio app continuation of Lunatic Player"
   homepage "https://github.com/Prince527GitHub/Re-Lunatic-Player"
 
-  macos Monterey
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   app "Re-Lunatic Player.app"
 end
