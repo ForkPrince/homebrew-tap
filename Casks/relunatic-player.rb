@@ -12,5 +12,7 @@ cask "relunatic-player" do
     strategy :github_latest
   end
 
+  depends_on macos: :monterey
+
   app "Re-Lunatic Player.app"
 end
