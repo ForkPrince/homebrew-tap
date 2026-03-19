@@ -1,6 +1,6 @@
 cask "relunatic-player" do
-  version "1.2.0"
-  sha256 "7d5d508a064aee9361171df4821ba817fcd6fcc6a21abbe82291f96ded43f21d"
+  version "1.2.1"
+  sha256 "347644adf6dcc501be1fff36f941d319ea18500661251e6890ac38d3833969ec"
 
   url "https://github.com/Prince527GitHub/Re-Lunatic-Player/releases/download/v#{version}/Re.Lunatic.Player.dmg"
   name "Re:Lunatic Player"
