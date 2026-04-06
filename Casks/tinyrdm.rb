@@ -14,4 +14,10 @@ cask "tinyrdm" do
   depends_on macos: ">= :big_sur"
 
   app "Tiny RDM.app"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+    regex(/v?(\d+(?:\.\d+)+)/)
+  end
 end
