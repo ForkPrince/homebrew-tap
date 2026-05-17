@@ -58,7 +58,7 @@ jobs:
           "
 
       - name: Save index.html
-        run: printf '%s' "${{ vars.WEBSITE }}" > index.html
+        run: printf '%s' "${{ vars.WEBSITE }}" > web/index.html
 
       - name: Create Artifact
         uses: actions/upload-pages-artifact@v4
