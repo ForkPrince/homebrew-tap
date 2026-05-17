@@ -48,6 +48,18 @@ jobs:
             brew info --json=v2 $cask > web/casks/$cask.json
           done
 
+      - name: Write manifest
+        run: |
+          node -e "
+            const fs = require('fs');
+            const formulae = '${{ env.FORMULAE }}'.split(' ').filter(Boolean);
+            const casks = '${{ env.CASKS }}'.split(' ').filter(Boolean);
+            fs.writeFileSync('web/manifest.json', JSON.stringify({ formulae, casks }));
+          "
+
+      - name: Save index.html
+        run: printf '%s' "${{ vars.WEBSITE }}" > index.html
+
       - name: Create Artifact
         uses: actions/upload-pages-artifact@v4
         with:
