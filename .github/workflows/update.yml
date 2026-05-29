@@ -14,29 +14,29 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4.3.1
 
       - name: Setup Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@521d40582eb7b2dc6c83001c590c455100248f27  # master
 
       - name: Configure Git user
-        uses: Homebrew/actions/git-user-config@master
+        uses: Homebrew/actions/git-user-config@521d40582eb7b2dc6c83001c590c455100248f27  # master
         with:
           username: BrewTestBot
 
       - name: Tap Repo
-        run: brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY)
+        run: brew tap "${{ github.repository_owner }}/$(basename "$GITHUB_REPOSITORY")"
 
       - name: Get packages
         run: |
           FORMULAE=$(find Formula -name '*.rb' -exec basename {} .rb \; | sort | paste -sd' ' -)
           CASKS=$(find Casks -name '*.rb' -exec basename {} .rb \; | sort | paste -sd' ' -)
 
-          echo "FORMULAE=$FORMULAE" >> $GITHUB_ENV
-          echo "CASKS=$CASKS" >> $GITHUB_ENV
+          echo "FORMULAE=$FORMULAE" >> "$GITHUB_ENV"
+          echo "CASKS=$CASKS" >> "$GITHUB_ENV"
 
       - name: Bump packages
-        uses: Homebrew/actions/bump-packages@main
+        uses: Homebrew/actions/bump-packages@521d40582eb7b2dc6c83001c590c455100248f27  # main
         with:
           token: ${{ secrets.TOKEN }}
           formulae: ${{ env.FORMULAE }}

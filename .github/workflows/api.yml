@@ -5,7 +5,9 @@ on:
     - cron: '0 5 * * *'
   workflow_dispatch:
 
-permissions: write-all
+permissions:
+  contents: read
+  pages: write
 
 concurrency:
   group: "pages"
@@ -17,43 +19,46 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4.3.1
 
       - name: Setup Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@521d40582eb7b2dc6c83001c590c455100248f27  # master
 
       - name: Configure Git user
-        uses: Homebrew/actions/git-user-config@master
+        uses: Homebrew/actions/git-user-config@521d40582eb7b2dc6c83001c590c455100248f27  # master
         with:
           username: BrewTestBot
 
       - name: Tap Repo
-        run: brew tap ${{ github.repository_owner }}/$(basename $GITHUB_REPOSITORY)
+        run: brew tap "${{ github.repository_owner }}/$(basename "$GITHUB_REPOSITORY")"
 
       - name: Get packages
         run: |
           FORMULAE=$(find Formula -name '*.rb' -exec basename {} .rb \; | sort | paste -sd' ' -)
           CASKS=$(find Casks -name '*.rb' -exec basename {} .rb \; | sort | paste -sd' ' -)
 
-          echo "FORMULAE=$FORMULAE" >> $GITHUB_ENV
-          echo "CASKS=$CASKS" >> $GITHUB_ENV
+          echo "FORMULAE=$FORMULAE" >> "$GITHUB_ENV"
+          echo "CASKS=$CASKS" >> "$GITHUB_ENV"
 
       - name: Generate API
         run: |
           mkdir -p web/formulae web/casks
           for formula in $FORMULAE; do
-            brew info --json=v2 $formula > web/formulae/$formula.json
+            brew info --json=v2 "$formula" > "web/formulae/$formula.json"
           done
           for cask in $CASKS; do
-            brew info --json=v2 $cask > web/casks/$cask.json
+            brew info --json=v2 "$cask" > "web/casks/$cask.json"
           done
 
       - name: Write manifest
+        env:
+          FORMULAE: ${{ env.FORMULAE }}
+          CASKS: ${{ env.CASKS }}
         run: |
           node -e "
             const fs = require('fs');
-            const formulae = '${{ env.FORMULAE }}'.split(' ').filter(Boolean);
-            const casks = '${{ env.CASKS }}'.split(' ').filter(Boolean);
+            const formulae = process.env.FORMULAE.split(' ').filter(Boolean);
+            const casks = process.env.CASKS.split(' ').filter(Boolean);
             fs.writeFileSync('web/manifest.json', JSON.stringify({ formulae, casks }));
           "
 
@@ -61,16 +66,16 @@ jobs:
         run: echo "${{ vars.WEBSITE }}" | base64 -d > web/index.html
 
       - name: Create Artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b  # v4.0.0
         with:
           name: website
           path: ./web/
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b  # v5.0.0
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e  # v4.0.5
         with:
           artifact_name: website
