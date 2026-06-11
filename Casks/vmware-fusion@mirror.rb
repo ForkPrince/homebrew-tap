@@ -9,7 +9,7 @@ cask "vmware-fusion@mirror" do
 
   auto_updates true
   conflicts_with cask: ["vmware-fusion@preview", "vmware-fusion"]
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
   container nested: "com.vmware.fusion.zip"
 
   app "#{staged_path}/payload/VMware Fusion.app"
