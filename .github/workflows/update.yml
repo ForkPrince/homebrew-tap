@@ -27,6 +27,9 @@ jobs:
       - name: Tap Repo
         run: brew tap "${{ github.repository_owner }}/$(basename "$GITHUB_REPOSITORY")"
 
+      - name: Trust Tap
+        run: brew trust "${{ github.repository_owner }}/$(basename "$GITHUB_REPOSITORY")"
+
       - name: Get packages
         run: |
           FORMULAE=$(find Formula -name '*.rb' -exec basename {} .rb \; | sort | paste -sd' ' -)
