@@ -9,7 +9,7 @@ cask "clop@mirror" do
 
   auto_updates true
   conflicts_with cask: "clop"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Clop.app"
 
