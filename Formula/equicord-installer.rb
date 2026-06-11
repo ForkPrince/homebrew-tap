@@ -1,8 +1,8 @@
 class EquicordInstaller < Formula
   desc "Installer for Equicord"
   homepage "https://github.com/Equicord/Equicord"
-  url "https://github.com/Equicord/Equilotl/archive/refs/tags/v2.2.4.tar.gz"
-  sha256 "39b51d46e7329a2d2c9357ed0d1eec38ad801eaaef2790f07978fc2a90f393ae"
+  url "https://github.com/Equicord/Equilotl/archive/refs/tags/v2.2.5.tar.gz"
+  sha256 "c2491129ee764084571bfac3b2d989f9ca39764824ae75895b4c15454c39271a"
   license "GPL-3.0-or-later"
 
   depends_on "go" => :build
