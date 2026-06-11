@@ -17,7 +17,7 @@ cask "tinyrdm" do
     regex(/v?(\d+(?:\.\d+)+)/)
   end
 
-  depends_on macos: ">= :big_sur"
+ depends_on macos: :big_sur
 
   app "Tiny RDM.app"
 end
