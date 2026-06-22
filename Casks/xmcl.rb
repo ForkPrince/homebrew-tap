@@ -1,9 +1,9 @@
 cask "xmcl" do
   arch arm: "arm64", intel: "x64"
 
-  version "0.57.0"
-  sha256 arm:   "0fa5cabdf875b92c84698eaa037aaf6c85198a1bb24ea969527c8cf1f34a8391",
-         intel: "63615c2f3a3e0eb12aad20f39cdb493d7163cb3bf3819004a0a62afa07a574dc"
+  version "0.58.0"
+  sha256 arm:   "9ebaccda60eda42ce9d0aafa7311d600099ba34ec6ffa67c8b0f4fc8ae529004",
+         intel: "62f60328d0bcc0e0031f27b00cc0b1698d56871a13a3d4a6c0cbf14d914981cc"
 
   url "https://github.com/Voxelum/x-minecraft-launcher/releases/download/v#{version}/xmcl-#{version}-#{arch}.dmg",
       verified: "github.com/Voxelum/x-minecraft-launcher/"
